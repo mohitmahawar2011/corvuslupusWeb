@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Corvus & Lupus Technologies — enterprise IT consulting, data & AI, and technology staffing.">
+  <meta name="theme-color" content="#0d2b23">
+  <title>Corvus &amp; Lupus Technologies | Enterprise IT &amp; Data Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #0d2b23;
+      --green-2: #14463a;
+      --ink: #10201b;
+      --muted: #5a6b64;
+      --paper: #f6f4ed;
+      --white: #fff;
+      --line: rgba(16, 32, 27, .14);
+      --gold: #b98a3e;
+      --sage: #cfe0d3;
+      --shadow: 0 26px 70px rgba(16, 32, 27, .14);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    body.menu-open { overflow: hidden; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; font: inherit; }
+    section { scroll-margin-top: 88px; }
+    h1, h2, h3, h4 { margin: 0; font-family: "Fraunces", serif; font-weight: 600; line-height: 1.1; letter-spacing: -.015em; }
+    .container { width: min(1180px, calc(100% - 44px)); margin-inline: auto; }
+    .skip-link { position: fixed; top: -60px; left: 18px; z-index: 200; padding: 10px 16px; color: #fff; background: var(--green); border-radius: 8px; text-decoration: none; transition: top .2s; }
+    .skip-link:focus { top: 18px; }
+
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--gold); font: 700 12px/1 "Inter", sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--gold); }
+
+    .button { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 6px; border: 1px solid transparent; font-weight: 600; text-decoration: none; transition: transform .2s, background .2s, color .2s; }
+    .button:hover { transform: translateY(-2px); }
+    .button-solid { color: #fff; background: var(--green); }
+    .button-solid:hover { background: var(--green-2); }
+    .button-ghost { color: var(--green); border-color: var(--line); background: transparent; }
+    .button-ghost:hover { background: rgba(16,32,27,.05); }
+    .button-gold { color: #fff; background: var(--gold); }
+    .button-sm { min-height: 44px; padding: 0 18px; font-size: 14px; }
+
+    header.site { position: fixed; inset: 0 0 auto; z-index: 100; transition: background .25s, box-shadow .25s; }
+    header.site.scrolled { background: rgba(246,244,237,.92); box-shadow: 0 1px 0 var(--line); backdrop-filter: blur(16px); }
+    .nav { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+    .brand img { width: 46px; height: 46px; border-radius: 10px; }
+    .brand b { font: 700 16px/1.05 "Fraunces", serif; }
+    .brand small { display: block; margin-top: 3px; color: var(--muted); font: 600 9px/1 "Inter", sans-serif; letter-spacing: .2em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a { color: var(--ink); font-size: 14px; font-weight: 600; text-decoration: none; }
+    .nav-links a:not(.button):hover { color: var(--gold); }
+    .menu-toggle { display: none; width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 8px; background: transparent; }
+
+    .hero { padding: 150px 0 96px; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 64px; align-items: center; }
+    .hero h1 { font-size: clamp(46px, 5.6vw, 82px); }
+    .hero h1 em { font-style: italic; color: var(--green-2); }
+    .hero p { max-width: 540px; margin: 28px 0 34px; color: var(--muted); font-size: 19px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .hero-panel { position: relative; padding: 40px; border-radius: 20px; background: var(--green); color: #fff; box-shadow: var(--shadow); }
+    .hero-panel img { width: 92px; height: 92px; border-radius: 16px; margin-bottom: 26px; }
+    .hero-panel h3 { font-size: 25px; color: #fff; }
+    .hero-panel p { margin: 12px 0 0; color: #bcd0c6; font-size: 15px; }
+    .hero-panel .divider { height: 1px; margin: 26px 0; background: rgba(255,255,255,.16); }
+    .mini-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .mini-stats div span { display: block; font: 600 26px/1 "Fraunces", serif; color: var(--gold); }
+    .mini-stats div small { color: #bcd0c6; font-size: 12px; }
+
+    .clients { padding: 30px 0 10px; }
+    .clients p { margin: 0 0 20px; color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .client-row { display: flex; flex-wrap: wrap; gap: 14px; }
+    .chip { padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; color: var(--green); font-size: 13px; font-weight: 600; background: var(--white); }
+
+    .section { padding: 108px 0; }
+    .section.alt { background: var(--white); }
+    .section-head { max-width: 780px; margin-bottom: 56px; }
+    .section-head h2 { margin-top: 16px; font-size: clamp(34px, 4.4vw, 56px); }
+    .section-head p { margin: 18px 0 0; color: var(--muted); font-size: 17px; }
+
+    .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .svc { padding: 34px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); transition: transform .25s, box-shadow .25s, background .25s; }
+    .section.alt .svc { background: var(--paper); }
+    .svc:hover { transform: translateY(-6px); box-shadow: var(--shadow); background: var(--white); }
+    .svc .num { font: 600 14px "Fraunces", serif; color: var(--gold); }
+    .svc h3 { margin: 20px 0 12px; font-size: 24px; }
+    .svc p { margin: 0 0 18px; color: var(--muted); font-size: 15px; }
+    .svc a { color: var(--green); font-weight: 700; font-size: 14px; text-decoration: none; }
+    .svc a:hover { color: var(--gold); }
+
+    .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    .cap { padding: 30px; background: var(--white); }
+    .cap h4 { font-size: 19px; font-family: "Inter", sans-serif; font-weight: 700; }
+    .cap p { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+
+    .solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .solution { display: grid; grid-template-columns: 48px 1fr; gap: 18px; padding: 28px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); }
+    .solution-no { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: var(--green); font: 600 12px "Inter", sans-serif; }
+    .solution h3 { margin-bottom: 8px; font: 700 19px "Inter", sans-serif; }
+    .solution p { margin: 0; color: var(--muted); font-size: 14px; }
+    .industry-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .industry { min-height: 190px; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); transition: background .2s, transform .2s; }
+    .industry:hover { transform: translateY(-4px); background: var(--sage); }
+    .industry span { color: var(--gold); font-size: 12px; font-weight: 700; }
+    .industry h3 { margin: 28px 0 8px; font: 700 18px "Inter", sans-serif; }
+    .industry p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .split h2 { font-size: clamp(34px, 4.4vw, 54px); }
+    .split p { color: var(--muted); font-size: 17px; }
+    .model { display: flex; gap: 18px; padding: 22px 0; border-top: 1px solid var(--line); }
+    .model:last-child { border-bottom: 1px solid var(--line); }
+    .model b { color: var(--gold); font: 600 15px "Fraunces", serif; }
+    .model h4 { font-family: "Inter", sans-serif; font-size: 17px; font-weight: 700; }
+    .model p { margin: 6px 0 0; font-size: 14px; }
+
+    .impact { color: #fff; background: var(--green); border-radius: 22px; padding: 60px; }
+    .impact .eyebrow { color: var(--gold); }
+    .impact h2 { color: #fff; font-size: clamp(32px, 4vw, 50px); margin: 16px 0 10px; }
+    .impact p { color: #bcd0c6; max-width: 620px; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 44px; }
+    .step { padding: 24px; border-left: 1px solid rgba(255,255,255,.16); }
+    .step:first-child { border-left: 0; }
+    .step b { color: var(--gold); font: 600 14px "Fraunces", serif; }
+    .step h4 { color: #fff; margin: 34px 0 8px; font-family: "Inter", sans-serif; font-size: 18px; }
+    .step p { color: #bcd0c6; margin: 0; font-size: 13px; }
+
+    .contact { color: #fff; background: var(--ink); }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; }
+    .contact h2 { color: #fff; font-size: clamp(38px, 4.6vw, 60px); }
+    .contact-copy p { color: #a9b8b1; max-width: 440px; }
+    .form { padding: 34px; border-radius: 16px; background: var(--white); color: var(--ink); }
+    .fg2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; margin-bottom: 6px; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+    .field input, .field select, .field textarea { width: 100%; padding: 13px 14px; border: 1px solid var(--line); border-radius: 8px; background: #f8f7f2; color: var(--ink); outline: none; font: inherit; }
+    .field textarea { min-height: 120px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--green-2); box-shadow: 0 0 0 4px rgba(20,70,58,.12); }
+    .form-note { margin: 12px 0 0; color: var(--muted); font-size: 12px; }
+    .form-status { display: none; margin-top: 12px; padding: 12px; border-radius: 8px; background: var(--sage); color: var(--green); font-size: 13px; }
+
+    footer { padding: 56px 0 28px; color: #cfd9d3; background: #081c16; }
+    .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 48px; margin-bottom: 46px; }
+    .foot-brand b { color: #fff; font: 700 17px "Fraunces", serif; }
+    .foot-brand p { color: #9fb0a8; font-size: 14px; }
+    .foot-col h4 { color: #fff; font-family: "Inter", sans-serif; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
+    .foot-col a { display: block; margin: 9px 0; color: #9fb0a8; font-size: 14px; text-decoration: none; }
+    .foot-col a:hover { color: var(--gold); }
+    .foot-bottom { display: flex; justify-content: space-between; gap: 18px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.12); color: #7d8f87; font-size: 12px; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s, transform .7s; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
+
+    @media (max-width: 980px) {
+      .nav-links { position: fixed; inset: 84px 0 auto; display: none; flex-direction: column; align-items: stretch; padding: 24px 22px 30px; background: var(--paper); border-bottom: 1px solid var(--line); }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: grid; place-items: center; }
+      .hero-grid, .split, .contact-grid { grid-template-columns: 1fr; }
+      .svc-grid, .cap-grid, .industry-grid { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding-top: 128px; }
+      .hero-actions .button { width: 100%; }
+      .section { padding: 74px 0; }
+      .svc-grid, .cap-grid, .solutions-grid, .industry-grid, .steps, .fg2, .foot-grid { grid-template-columns: 1fr; }
+      .cap-grid { border-radius: 14px; }
+      .impact { padding: 34px 24px; }
+      .step, .step:first-child { border-left: 0; border-top: 1px solid rgba(255,255,255,.16); padding-left: 0; }
+      .step:first-child { border-top: 0; }
+      .foot-bottom { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site" id="site-header">
+    <nav class="container nav" aria-label="Primary">
+      <a class="brand" href="#home">
+        <img src="assets/symbol_4.png" alt="">
+        <span><b>Corvus &amp; Lupus</b><small>Technologies</small></span>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#solutions">Solutions</a>
+        <a href="#industries">Industries</a>
+        <a href="#staffing">Staffing</a>
+        <a href="#approach">Approach</a>
+        <a href="#contact" class="button button-solid button-sm">Talk to us ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">IT · Data &amp; AI · Talent</div>
+          <h1>Consulting that turns technology into <em>measurable outcomes</em>.</h1>
+          <p>Corvus &amp; Lupus Technologies helps enterprises modernize platforms, put data and AI to work, and add the specialist talent that gets it delivered.</p>
+          <div class="hero-actions">
+            <a class="button button-solid" href="#contact">Start a conversation ↗</a>
+            <a class="button button-ghost" href="#services">Explore services →</a>
+          </div>
+        </div>
+        <aside class="hero-panel reveal">
+          <img src="assets/symbol_4.png" alt="Corvus and Lupus emblem">
+          <h3>Advisory to delivery, under one partner.</h3>
+          <p>Strategy, engineering, and people—brought together so decisions actually reach production.</p>
+          <div class="divider"></div>
+          <div class="mini-stats">
+            <div><span>Advisory</span><small>Strategy &amp; architecture</small></div>
+            <div><span>Delivery</span><small>Build &amp; run teams</small></div>
+            <div><span>Data &amp; AI</span><small>Platforms to models</small></div>
+            <div><span>Talent</span><small>Contract &amp; permanent</small></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <div class="clients container">
+      <p>Focus areas across the enterprise technology landscape</p>
+      <div class="client-row">
+        <span class="chip">Cloud modernization</span>
+        <span class="chip">Data engineering</span>
+        <span class="chip">Generative AI</span>
+        <span class="chip">Cybersecurity</span>
+        <span class="chip">DevOps &amp; SRE</span>
+        <span class="chip">Enterprise apps</span>
+      </div>
+    </div>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">What we do</div>
+          <h2>Three ways we help you make progress.</h2>
+          <p>Whether the gap is a decision, a delivery team, or a hard-to-find specialist, we shape the engagement around the outcome you need.</p>
+        </div>
+        <div class="svc-grid">
+          <article class="svc reveal"><div class="num">01</div><h3>Technology consulting</h3><p>Strategy, architecture, and roadmaps that connect technology investment to business results.</p><a href="#contact">Discuss a challenge ↗</a></article>
+          <article class="svc reveal"><div class="num">02</div><h3>Managed delivery</h3><p>Focused teams that own a workstream end to end—from discovery and build to release and support.</p><a href="#approach">See our approach →</a></article>
+          <article class="svc reveal"><div class="num">03</div><h3>Technology staffing</h3><p>Vetted contract, contract-to-hire, and permanent specialists integrated into your existing teams.</p><a href="#staffing">Explore staffing ↓</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="capabilities">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Capabilities</div>
+          <h2>Depth across the modern technology stack.</h2>
+        </div>
+        <div class="cap-grid reveal">
+          <div class="cap"><h4>Cloud &amp; platforms</h4><p>Architecture, migration, and platform engineering across AWS, Azure, and GCP.</p></div>
+          <div class="cap"><h4>Data engineering</h4><p>Modern data platforms, pipelines, governance, and analytics foundations.</p></div>
+          <div class="cap"><h4>AI &amp; machine learning</h4><p>Machine learning, generative AI, and production-grade MLOps.</p></div>
+          <div class="cap"><h4>Software engineering</h4><p>Web, mobile, APIs, and modernization of legacy applications.</p></div>
+          <div class="cap"><h4>Cybersecurity</h4><p>Security architecture, identity, governance, risk, and compliance.</p></div>
+          <div class="cap"><h4>Enterprise applications</h4><p>ERP, CRM, integration, and business-analysis support.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="solutions">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Solutions we provide</div>
+          <h2>From data foundations to intelligent enterprise systems.</h2>
+          <p>Our solution areas connect strategy, engineering, and adoption so technology moves beyond a proof of concept and becomes part of day-to-day operations.</p>
+        </div>
+        <div class="solutions-grid">
+          <article class="solution reveal"><span class="solution-no">01</span><div><h3>Data strategy &amp; consulting</h3><p>Data operating models, platform roadmaps, architecture, governance, and investment priorities.</p></div></article>
+          <article class="solution reveal"><span class="solution-no">02</span><div><h3>Data engineering &amp; integration</h3><p>ETL/ELT modernization, lakehouse platforms, real-time pipelines, APIs, and enterprise integration.</p></div></article>
+          <article class="solution reveal"><span class="solution-no">03</span><div><h3>Analytics &amp; business intelligence</h3><p>Enterprise reporting, semantic models, self-service analytics, dashboards, and decision support.</p></div></article>
+          <article class="solution reveal"><span class="solution-no">04</span><div><h3>AI, ML &amp; generative AI</h3><p>Use-case discovery, model development, copilots, RAG systems, responsible AI, and MLOps.</p></div></article>
+          <article class="solution reveal"><span class="solution-no">05</span><div><h3>Cloud modernization &amp; security</h3><p>Cloud landing zones, migration, infrastructure automation, identity, security, and operations.</p></div></article>
+          <article class="solution reveal"><span class="solution-no">06</span><div><h3>Application modernization</h3><p>Modern web and mobile products, legacy re-engineering, microservices, DevOps, and quality engineering.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="industries">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Industry contexts</div>
+          <h2>Technology solutions shaped around how your sector works.</h2>
+          <p>Each sector has different data, regulatory, operational, and customer-experience pressures. We tailor the team and solution to that context rather than applying a generic template.</p>
+        </div>
+        <div class="industry-grid">
+          <article class="industry reveal"><span>01</span><h3>Banking &amp; financial services</h3><p>Risk, compliance, customer intelligence, automation, and secure data platforms.</p></article>
+          <article class="industry reveal"><span>02</span><h3>Retail &amp; consumer goods</h3><p>Demand forecasting, personalization, supply chain, pricing, and customer analytics.</p></article>
+          <article class="industry reveal"><span>03</span><h3>Manufacturing</h3><p>Connected operations, predictive maintenance, quality analytics, and Industry 4.0.</p></article>
+          <article class="industry reveal"><span>04</span><h3>Energy &amp; utilities</h3><p>Asset intelligence, forecasting, grid data, field operations, and sustainability.</p></article>
+          <article class="industry reveal"><span>05</span><h3>Healthcare &amp; life sciences</h3><p>Governed data, operational analytics, patient and research workflows, and AI adoption.</p></article>
+          <article class="industry reveal"><span>06</span><h3>Media &amp; telecommunications</h3><p>Audience intelligence, network analytics, churn, content, and digital experience.</p></article>
+          <article class="industry reveal"><span>07</span><h3>Technology &amp; digital services</h3><p>Product engineering, cloud platforms, DevOps, talent scaling, and managed delivery.</p></article>
+          <article class="industry reveal"><span>08</span><h3>Public sector &amp; education</h3><p>Secure modernization, citizen services, responsible data use, and accessible platforms.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="staffing">
+      <div class="container split">
+        <div class="reveal">
+          <div class="eyebrow">Flexible talent</div>
+          <h2>Add expertise without adding complexity.</h2>
+          <p>Pick the model that matches your timeline, budget, and ownership. We prioritize relevant experience, clear communication, and a clean handover.</p>
+          <a class="button button-solid" href="#contact" style="margin-top:8px">Share a requirement ↗</a>
+        </div>
+        <div class="reveal">
+          <div class="model"><b>01</b><div><h4>Contract staffing</h4><p>Specialists for urgent work, delivery peaks, and time-bound programs.</p></div></div>
+          <div class="model"><b>02</b><div><h4>Contract-to-hire</h4><p>Try the fit before a long-term commitment on niche roles.</p></div></div>
+          <div class="model"><b>03</b><div><h4>Permanent hiring</h4><p>Targeted search for engineers, architects, analysts, and leaders.</p></div></div>
+          <div class="model"><b>04</b><div><h4>Team augmentation</h4><p>A coordinated pod that plugs into your delivery process.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="approach">
+      <div class="container">
+        <div class="impact reveal">
+          <div class="eyebrow">How we work</div>
+          <h2>A practical path from requirement to results.</h2>
+          <p>A straightforward, transparent process that keeps clients and technology professionals aligned at every step.</p>
+          <div class="steps">
+            <div class="step"><b>01 / DISCOVER</b><h4>Understand the outcome</h4><p>Scope, environment, team, timeline, and what success means.</p></div>
+            <div class="step"><b>02 / MATCH</b><h4>Shape the right team</h4><p>Technical fit, delivery experience, communication, and availability.</p></div>
+            <div class="step"><b>03 / LAUNCH</b><h4>Start cleanly</h4><p>Selection, onboarding, and clear delivery expectations.</p></div>
+            <div class="step"><b>04 / SUPPORT</b><h4>Stay accountable</h4><p>Open communication and adjustments as priorities shift.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <div class="eyebrow">Start a conversation</div>
+          <h2>Tell us what you need to build—or who you need to hire.</h2>
+          <p>Share the outcome, role, or delivery challenge and we’ll recommend the right engagement model.</p>
+        </div>
+        <form class="form reveal" id="contact-form">
+          <div class="fg2">
+            <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+          <div class="fg2">
+            <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization"></div>
+            <div class="field"><label for="interest">I am looking for</label><select id="interest" name="interest" required><option value="">Choose one</option><option>Technology consulting</option><option>Managed delivery team</option><option>Contract staffing</option><option>Permanent hiring</option><option>A technology opportunity</option></select></div>
+          </div>
+          <div class="field"><label for="message">How can we help?</label><textarea id="message" name="message" required placeholder="Role, skills, project outcome, location, work model, or timeline…"></textarea></div>
+          <button class="button button-gold" type="submit">Send enquiry ↗</button>
+          <p class="form-note">Prototype form: connect an email or form service before publishing.</p>
+          <div class="form-status" id="form-status" role="status">The form works in the browser. Add your business email or form endpoint before publishing.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="#home"><img src="assets/symbol_4.png" alt=""><span><b style="color:#fff">Corvus &amp; Lupus</b><small style="color:#9fb0a8">Technologies</small></span></a>
+          <p>Enterprise IT consulting, data &amp; AI, and flexible technology staffing.</p>
+        </div>
+        <div class="foot-col"><h4>For companies</h4><a href="#services">Consulting</a><a href="#staffing">Staffing</a><a href="#approach">Approach</a><a href="#contact">Contact</a></div>
+        <div class="foot-col"><h4>For talent</h4><a href="#staffing">Join the network</a><a href="#capabilities">Specialisms</a><a href="#contact">Introduce yourself</a></div>
+      </div>
+      <div class="foot-bottom"><span>© <span id="year"></span> Corvus &amp; Lupus Technologies.</span><span>Intelligence to see ahead. Strength to deliver together.</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById("site-header");
+    const toggle = document.getElementById("menu-toggle");
+    const links = document.getElementById("nav-links");
+    const closeMenu = () => { links.classList.remove("open"); document.body.classList.remove("menu-open"); toggle.setAttribute("aria-expanded","false"); toggle.textContent="☰"; };
+    toggle.addEventListener("click", () => { const open = links.classList.toggle("open"); document.body.classList.toggle("menu-open", open); toggle.setAttribute("aria-expanded", String(open)); toggle.textContent = open ? "×" : "☰"; });
+    links.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+    window.addEventListener("scroll", () => header.classList.toggle("scrolled", window.scrollY > 20));
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } }), { threshold: .12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    document.getElementById("contact-form").addEventListener("submit", e => { e.preventDefault(); document.getElementById("form-status").style.display = "block"; });
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
